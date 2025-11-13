@@ -1,9 +1,12 @@
 const dotenv = require('dotenv');
 const express  = require('express');
-const mongoose = require('mongoose');
+
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+
+const connectDB = require('./config/database');
+connectDB();
 
 const authRoutes = require('./routes/auth');
 const User = require('./models/user')
@@ -28,18 +31,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-
-
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/auth';
-
-mongoose.connect(dbUrl);
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, "Connection error"));
-db.once('open', () =>{
-    console.log('Database connected');
-});
 
 app.use('/', authRoutes);
 
