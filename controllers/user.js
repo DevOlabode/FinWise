@@ -30,3 +30,18 @@ module.exports.login = (req, res, next) => {
         });
     })(req, res, next);
 };
+
+module.exports.logout = catchAsync(async(req, res)=>{
+    req.logout(function(err){
+        if(err) return next(err)
+        req.session.destroy(()=>{
+        res.status(201).json({msg : 'Logged out successfully'})
+    })
+    })
+});
+
+module.exports.profile = catchAsync(async(req, res)=>{
+    const user = await User.findById(req.user._id);
+    if(!user) throw new ExpressError('User not found', 404);
+    res.status(200).json(user)
+});
