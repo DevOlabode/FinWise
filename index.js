@@ -1,4 +1,5 @@
-const dotenv = require('dotenv');
+require('dotenv').config();
+
 const express  = require('express');
 
 const session = require('express-session');
@@ -10,8 +11,6 @@ connectDB();
 
 const authRoutes = require('./routes/auth');
 const User = require('./models/user')
-
-dotenv.config();
 
 const app = express()
 const PORT = process.env.PORT || 3000;
