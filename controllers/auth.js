@@ -14,21 +14,17 @@ module.exports.register = catchAsync(async(req, res)=>{
 });
 
 module.exports.login = (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-    if (err) {
-        return next(err);
-    }
-    if (!user) {
-        return res.status(401).json({ msg: info.message || 'Login failed' });
-    }
+  req.body.username = req.body.email;
+
+  passport.authenticate('local', (err, user, info) => {
+    if (err) return next(err);
+    if (!user) return res.status(401).json({ msg: info.message || 'Login failed' });
 
     req.logIn(user, (err) => {
-        if (err) {
-            return next(err)
-        }
-            return res.status(200).json({ msg: 'Logged in successfully' });
-        });
-    })(req, res, next);
+      if (err) return next(err);
+      res.status(200).json({ msg: 'Logged in successfully' });
+    });
+  })(req, res, next);
 };
 
 module.exports.logout = catchAsync(async(req, res)=>{
