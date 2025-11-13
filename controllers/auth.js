@@ -6,7 +6,15 @@ const ExpressError  = require('../utils/expressError');
 const catchAsync  = require('../utils/catchAsync');
 
 module.exports.register = catchAsync(async(req, res)=>{
-    const {username, email, password} = req.body;
+    const {username, email, password, confirmPassword =''} = req.body;
+
+    if(confirmPassword === ''){
+        throw new ExpressError('Confirm Password is required', 400);
+    }
+
+    if(password !== confirmPassword){
+        throw new ExpressError('Passwords do not match', 400);
+    }
     const user = await User.register(new User({ username, email }), password);
     await user.save();
 
