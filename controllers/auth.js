@@ -43,5 +43,5 @@ module.exports.logout = catchAsync(async(req, res)=>{
 module.exports.profile = catchAsync(async(req, res)=>{
     const user = await User.findById(req.user._id);
     if(!user) throw new ExpressError('User not found', 404);
-    res.status(200).json(user)
+    return res.status(200).json(user)
 });

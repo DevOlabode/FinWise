@@ -19,8 +19,8 @@ const sessionConfig = {
     secret : process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-}
-
+};
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session(sessionConfig));
 app.use(passport.initialize());
@@ -33,7 +33,14 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use('/', authRoutes);
 
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
+
 app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err);
+  }
   const { statusCode = 500, message = "Internal Server Error" } = err;
   res.status(statusCode).json({ error: message });
 });
