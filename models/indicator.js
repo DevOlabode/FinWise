@@ -25,3 +25,5 @@ const indicatorSchema = new Schema({
         required : true
     }
 }, { timestamps : true });
+
+module.exports = mongoose.model('Indicator', indicatorSchema);
