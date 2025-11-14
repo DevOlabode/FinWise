@@ -33,6 +33,10 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use('/', authRoutes);
 
+app.get('/', (req, res)=>{
+  res.status(200).json({msg : 'The Home Route'})
+})
+
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
