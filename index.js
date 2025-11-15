@@ -10,7 +10,9 @@ const connectDB = require('./config/database');
 connectDB();
 
 const authRoutes = require('./routes/auth');
-const User = require('./models/user')
+const mainRoutes = require('./routes/main');
+
+const User = require('./models/user');
 
 const app = express()
 const PORT = process.env.PORT || 3000;
@@ -32,6 +34,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use('/', authRoutes);
+app.use('/', mainRoutes);
 
 app.get('/', (req, res)=>{
   res.status(200).json({msg : 'The Home Route'})
