@@ -2,7 +2,7 @@ const {getInflation} = require('../fetch/inflation');
 const User = require('../models/user');
 
 module.exports.getInflationData = async (req, res, next) => {
-    const country = req.user.country || 'Canada';
+    const country = req.user.country || 'CA';
     
     const data = await getInflation(country);
 
