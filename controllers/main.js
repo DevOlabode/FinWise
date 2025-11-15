@@ -1,4 +1,6 @@
 const {getInflation,getInflationRate } = require('../fetch/inflation');
+const { getStockData } = require('../fetch/stock');
+
 const User = require('../models/user');
 
 module.exports.getInflationData = async (req, res, next) => {
@@ -8,4 +10,12 @@ module.exports.getInflationData = async (req, res, next) => {
     const rateData = await getInflationRate(country);
 
     res.status(200).json({ inflationData: data, inflationRateData: rateData });
+};
+
+
+module.exports.getStockData = async(req, res)=>{
+    const stockTicker = req.user.ticker || 'AAPL';
+
+    const stockData = await getStockData(stockTicker);
+    res.status(200).json({ stockData: stockData });
 };

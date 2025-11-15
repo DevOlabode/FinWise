@@ -5,5 +5,6 @@ const controller = require('../controllers/main');
 const { isLoggedIn } = require('../middleware');
 
 router.get('/inflation', isLoggedIn, controller.getInflationData);
+router.get('/stock', isLoggedIn, controller.getStockData);
 
 module.exports = router;

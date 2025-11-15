@@ -41,6 +41,6 @@ async function getInflationRate(country) {
   } catch (error) {
     console.error("Request failed:", error);
   }
-}
+};
 
-module.exports = { getInflation, getInflationRate };
+module.exports = { getInflation, getInflationRate};
