@@ -12,7 +12,6 @@ module.exports.getInflationData = async (req, res, next) => {
     res.status(200).json({ inflationData: data, inflationRateData: rateData });
 };
 
-
 module.exports.getStockData = async(req, res)=>{
     const stockTicker = req.user.ticker || 'AAPL';
 

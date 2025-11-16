@@ -43,4 +43,5 @@ async function getInflationRate(country) {
   }
 };
 
+
 module.exports = { getInflation, getInflationRate};
