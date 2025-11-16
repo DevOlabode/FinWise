@@ -10,4 +10,6 @@ router.get('/stock',isLoggedIn, controller.getStockData);
 
 router.get('/news', isLoggedIn, controller.getNewsArticles);
 
+router.get('/worldbank-docs', isLoggedIn, controller.getWorldBankDocs);
+
 module.exports = router;

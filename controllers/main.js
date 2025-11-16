@@ -29,3 +29,9 @@ module.exports.getNewsArticles = async (req, res) =>{
     const articles = await getNewsData(query);
     res.status(200).json({ articles: articles });
 };
+
+module.exports.getWorldBankDocs = async (req, res) => {
+    const {country='Canada', keyword='economics'} = req.query;   
+    const docs = await getWorldBankDocs(country, keyword);
+    res.status(200).json({ documents: docs });
+};
