@@ -1,6 +1,6 @@
-const {getInflation,getInflationRate, fredInflationData } = require('../fetch/inflation');
-const { getStockData } = require('../fetch/stock');
-const { getNewsData } = require('../fetch/news');
+const {getInflation,getInflationRate, fredInflationData } = require('../fetchAPI/inflation');
+const { getStockData } = require('../fetchAPI/stock');
+const { getNewsData } = require('../fetchAPI/news');
 
 const User = require('../models/user');
 
@@ -27,4 +27,4 @@ module.exports.getNewsArticles = async (req, res) =>{
 
     const articles = await getNewsData(query);
     res.status(200).json({ articles: articles });
-}
+};
