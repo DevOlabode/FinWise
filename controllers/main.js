@@ -1,6 +1,7 @@
 const {getInflation,getInflationRate, fredInflationData } = require('../fetchAPI/inflation');
 const { getStockData } = require('../fetchAPI/stock');
 const { getNewsData } = require('../fetchAPI/news');
+const { getWorldBankDocs } = require('../fetchAPI/worldBank');
 
 const User = require('../models/user');
 

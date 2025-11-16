@@ -5,7 +5,6 @@ const ExpressError = require('../utils/ExpressError');
 const getNewsData = async (query) => {
     const apiKey = process.env.NEWS_API_KEY;
 
-    //Can Enter country as query parameter for localized news.
     const url = `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=publishedAt&apiKey=${apiKey}`;
 
     try {
@@ -27,6 +26,6 @@ const getNewsData = async (query) => {
     } catch (error) {
         console.error("Request failed:", error);
     }
-}
+};
 
 module.exports = { getNewsData };
