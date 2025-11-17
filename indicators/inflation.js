@@ -70,6 +70,7 @@ const CPIindex = async(country) =>{
       throw new ExpressError(`Error: ${response.status} ${response.statusText}`);
   }
     const data = await response.json();
+    console.log(data);
     return data;
   }catch (error) {
     console.error("Request failed:", error);
