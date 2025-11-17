@@ -1,7 +1,7 @@
-const {getInflation,getInflationRate, fredInflationData } = require('../fetchAPI/inflation');
-const { getStockData } = require('../fetchAPI/stock');
-const { getNewsData } = require('../fetchAPI/news');
-const { getWorldBankDocs } = require('../fetchAPI/worldBank');
+const {getInflation,getInflationRate, fredInflationData, CPIindex } = require('../indicators/inflation');
+const { getStockData } = require('../indicators/stock');
+const { getNewsData } = require('../indicators/news');
+const { getWorldBankDocs } = require('../indicators/worldBank');
 
 const User = require('../models/user');
 
@@ -12,8 +12,9 @@ module.exports.getInflationData = async (req, res, next) => {
     const data = await getInflation(country);
     const rateData = await getInflationRate(country);
     const fredData = await fredInflationData(seriesId);
+    const CPIdata = await CPIindex(country);
 
-    res.status(200).json({ inflationData: data, fredData : fredData, inflationRateData: rateData });
+    res.status(200).json({ inflationData: data, fredData : fredData, CPIData : CPIdata, inflationRateData: rateData });
 }; 
 
 module.exports.getStockData = async(req, res)=>{

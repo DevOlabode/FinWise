@@ -61,7 +61,19 @@ const fredInflationData = async (seriesId = 'CPIAUCSL') =>{
 };
 
 const CPIindex = async(country) =>{
-  const url = `https://api.oecd.org/data/OECD.CPI.${country}.A/all`
+  const url = `https://stats.oecd.org/sdmx-json/data/PRICES_CPI/${country}.CPI.TOT.A/all?startTime=2010&endTime=2025`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error("Error response text:", await response.text());
+      throw new ExpressError(`Error: ${response.status} ${response.statusText}`);
+  }
+    const data = await response.json();
+    return data;
+  }catch (error) {
+    console.error("Request failed:", error);
+  }
 }
 
-module.exports = { getInflation, getInflationRate, fredInflationData };
+module.exports = { getInflation, getInflationRate, fredInflationData, CPIindex };
