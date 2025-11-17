@@ -25,7 +25,7 @@ const apiKey  = process.env.INFLATION_API_KEY
   } catch (error) {
     console.error("Request failed:", error);
   }
-}
+};
 
 async function getInflationRate(country) {
   const url = `https://www.statbureau.org/get-data-json?country=${encodeURIComponent(country)}&indicator=inflation_rate`;
@@ -59,5 +59,9 @@ const fredInflationData = async (seriesId = 'CPIAUCSL') =>{
     console.error("Request failed:", error);
   }
 };
+
+const CPIindex = async(country) =>{
+  const url = `https://api.oecd.org/data/OECD.CPI.${country}.A/all`
+}
 
 module.exports = { getInflation, getInflationRate, fredInflationData };
