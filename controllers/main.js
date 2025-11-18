@@ -1,4 +1,4 @@
-const {getInflation,getInflationRate, fredInflationData, CPIindex } = require('../indicators/inflation');
+const {getInflation,getInflationRate, fredInflationData } = require('../indicators/inflation');
 const { getStockData } = require('../indicators/stock');
 const { getNewsData } = require('../indicators/news');
 const { getWorldBankDocs } = require('../indicators/worldBank');
