@@ -22,6 +22,7 @@ const sessionConfig = {
     resave: false,
     saveUninitialized: false,
 };
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session(sessionConfig));
