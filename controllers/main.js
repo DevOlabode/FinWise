@@ -12,9 +12,8 @@ module.exports.getInflationData = async (req, res, next) => {
     const data = await getInflation(country);
     const rateData = await getInflationRate(country);
     const fredData = await fredInflationData(seriesId);
-    const CPIdata = await CPIindex(country);
 
-    res.status(200).json({ inflationData: data, fredData : null, CPIData : CPIdata, inflationRateData: null });
+    res.status(200).json({ inflationData: data, fredData : rateData, inflationRateData: fredData });
 }; 
 
 module.exports.getStockData = async(req, res)=>{
