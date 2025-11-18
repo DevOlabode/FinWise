@@ -2,7 +2,7 @@ const {getInflation,getInflationRate, fredInflationData } = require('../indicato
 const { getStockData } = require('../indicators/stock');
 const { getNewsData } = require('../indicators/news');
 const { getWorldBankDocs } = require('../indicators/worldBank');
-const { getGDP } = require('../indicators/GDP');
+const { getGDP, GDPperCapital } = require('../indicators/GDP');
 
 const User = require('../models/user');
 
@@ -39,6 +39,9 @@ module.exports.getWorldBankDocs = async (req, res) => {
 
 module.exports.getGDP = async(req, res)=>{
     const { country = 'CAN' } = req.query;
-    const data = await getGDP(country);
-    res.status(200).json({data : data})
+    
+    const GDPdata = await getGDP(country);
+    const GDPCapital = await GDPperCapital(country)
+
+    res.status(200).json({GDP_data : GDPdata, GDPperCapital : GDPCapital})
 };
