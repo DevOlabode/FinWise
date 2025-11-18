@@ -40,11 +40,20 @@ const GDPperCapital = async(country) =>{
 
 //GDP Growth.
 
-const GDPgrowth = async(country)=>{
+const GDPGrowth = async(country)=>{
     const url = `https://api.worldbank.org/v2/country/${country}/indicator/NY.GDP.MKTP.KD.ZG?format=json`;
     try {
         const response  = await fetch(url);
-    }
-}
 
-module.exports = { getGDP, GDPperCapital };
+        if(!response.ok){
+            throw new ExpressError(`Error: ${response.status} ${response.statusText}`, response.status)
+        }
+        console.log(response.status)
+        const data = await response.json();
+        return data
+    }catch(err){
+        console.error('Request Failed: ', err)
+    }
+};
+
+module.exports = { getGDP, GDPperCapital, GDPGrowth };
