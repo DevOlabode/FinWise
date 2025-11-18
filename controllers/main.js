@@ -2,6 +2,7 @@ const {getInflation,getInflationRate, fredInflationData } = require('../indicato
 const { getStockData } = require('../indicators/stock');
 const { getNewsData } = require('../indicators/news');
 const { getWorldBankDocs } = require('../indicators/worldBank');
+const { getGDP } = require('../indicators/GDP');
 
 const User = require('../models/user');
 
@@ -34,4 +35,10 @@ module.exports.getWorldBankDocs = async (req, res) => {
     const {country='Canada', keyword='economics'} = req.query;   
     const docs = await getWorldBankDocs(country, keyword);
     res.status(200).json({ documents: docs });
+};
+
+module.exports.getGDP = async(req, res)=>{
+    const { country = 'CAN' } = req.query;
+    const data = await getGDP(country);
+    res.status(200).json({data : data})
 };

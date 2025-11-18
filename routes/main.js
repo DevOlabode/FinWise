@@ -12,4 +12,6 @@ router.get('/news', isLoggedIn, controller.getNewsArticles);
 
 router.get('/worldbank-docs', isLoggedIn, controller.getWorldBankDocs);
 
+router.get('/gdp', isLoggedIn, controller.getGDP)
+
 module.exports = router;

@@ -10,7 +10,7 @@ async function getWorldBankDocs(country, keyword = "economics") {
     }
 
     const data = await response.json();
-    return data;
+    return data.documents;
   } catch (error) {
     console.error("Request failed:", error);
   }
