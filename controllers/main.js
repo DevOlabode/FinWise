@@ -1,4 +1,4 @@
-const {getInflation,getInflationRate, fredInflationData } = require('../integrations/inflation');
+const { getInflation,getInflationRate, fredInflationData } = require('../integrations/inflation');
 const { getStockData } = require('../integrations/stock');
 const { getNewsData } = require('../integrations/news');
 const { getWorldBankDocs } = require('../integrations/worldBank');
@@ -6,6 +6,7 @@ const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
 const { unemploymentRate, youthUnemploymentRate, employmentToPopulation } = require('../integrations/labourMarket');
 const { centralBankPolicyRate, lendInterestRate, depositInterestRate } = require('../integrations/monetary');
 const { USDExchangeRate, otherExchangeRate } = require('../integrations/exchangeRates');
+const { GovRevenue } = require('../integrations/government')
 
 const User = require('../models/user');
 
@@ -72,5 +73,11 @@ module.exports.exchangeRate = async(req, res)=>{
     const {baseCurrency} = req.query || 'NGN'
     const USDExchangeData = await USDExchangeRate();
     const otherExchangeData = await otherExchangeRate(baseCurrency)
-    res.status(200).json({USDExchangeRate : null, otherCurrencyExchangedata : otherExchangeData})
+    res.status(200).json({USDExchangeRate : USDExchangeData, otherCurrencyExchangedata : otherExchangeData})
+};
+
+module.exports.government = async(req, res)=>{
+    const country = req.query.country || 'CAN';
+    const govRevenueData = await GovRevenue(country);
+    res.status(200).json({governmentalRevenue : govRevenueData})
 }

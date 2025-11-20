@@ -19,6 +19,8 @@ router.get('/labour-market', isLoggedIn, catchAsync(controller.labourMarketData)
 
 router.get('/monetary', catchAsync(controller.monetary));
 
-router.get('/exchange-rate', catchAsync(controller.exchangeRate))
+router.get('/exchange-rate', catchAsync(controller.exchangeRate));
+
+router.get('/government', catchAsync(controller.government))
 
 module.exports = router;
