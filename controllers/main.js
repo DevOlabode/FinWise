@@ -5,7 +5,7 @@ const { getWorldBankDocs } = require('../integrations/worldBank');
 const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
 const { unemploymentRate, youthUnemploymentRate, employmentToPopulation } = require('../integrations/labourMarket');
 const { centralBankPolicyRate, lendInterestRate, depositInterestRate } = require('../integrations/monetary');
-const { USDExchangeRate } = require('../integrations/exchangeRates');
+const { USDExchangeRate, otherExchangeRate } = require('../integrations/exchangeRates');
 
 const User = require('../models/user');
 
@@ -69,7 +69,8 @@ module.exports.monetary = async(req, res)=>{
 };
 
 module.exports.exchangeRate = async(req, res)=>{
+    const {baseCurrency} = req.query || 'NGN'
     const USDExchangeData = await USDExchangeRate();
-
-    res.status(200).json({USDExchangeRate : USDExchangeData})
+    const otherExchangeData = await otherExchangeRate(baseCurrency)
+    res.status(200).json({USDExchangeRate : null, otherCurrencyExchangedata : otherExchangeData})
 }
