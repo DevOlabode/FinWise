@@ -21,6 +21,8 @@ router.get('/monetary', catchAsync(controller.monetary));
 
 router.get('/exchange-rate', catchAsync(controller.exchangeRate));
 
-router.get('/government', catchAsync(controller.government))
+router.get('/government', catchAsync(controller.government));
+
+router.get('/export', catchAsync(controller.tradeData))
 
 module.exports = router;
