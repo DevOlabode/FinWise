@@ -1,8 +1,8 @@
-const {getInflation,getInflationRate, fredInflationData } = require('../indicators/inflation');
-const { getStockData } = require('../indicators/stock');
-const { getNewsData } = require('../indicators/news');
-const { getWorldBankDocs } = require('../indicators/worldBank');
-const { getGDP, GDPperCapital, GDPGrowth } = require('../indicators/GDP');
+const {getInflation,getInflationRate, fredInflationData } = require('../integrations/inflation');
+const { getStockData } = require('../integrations/stock');
+const { getNewsData } = require('../integrations/news');
+const { getWorldBankDocs } = require('../integrations/worldBank');
+const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
 
 const User = require('../models/user');
 
