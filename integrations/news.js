@@ -18,7 +18,7 @@ const getNewsData = async (query) => {
         if(!response.ok) {
             const errorText = await response.text();
             console.error("Error response text:", errorText);
-            throw new ExpressError(`Error: ${response.status} ${response.statusText}`);
+            throw new ExpressError(`Error: ${response.status} ${response.statusText}`, response.status);
         }
 
         const data = await response.json();

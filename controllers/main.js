@@ -3,6 +3,7 @@ const { getStockData } = require('../integrations/stock');
 const { getNewsData } = require('../integrations/news');
 const { getWorldBankDocs } = require('../integrations/worldBank');
 const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
+const { unemploymentRate } = require('../integrations/labourMarket');
 
 const User = require('../models/user');
 
@@ -45,4 +46,11 @@ module.exports.getGDP = async(req, res)=>{
     const growth = await GDPGrowth(country)
 
     res.status(200).json({GDP_data : GDPdata, GDPperCapital : perCapital, GDPGrowth : growth})
+};
+
+module.exports.labourMarketData = async(req, res)=>{
+    const {country = 'CAN'} = req.query;
+    const getUnemploymentRate = await unemploymentRate(country);
+
+    res.status(200).json({unemploymentRate : getUnemploymentRate})
 };
