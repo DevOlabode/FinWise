@@ -7,7 +7,7 @@ const { unemploymentRate, youthUnemploymentRate, employmentToPopulation } = requ
 const { centralBankPolicyRate, lendInterestRate, depositInterestRate } = require('../integrations/monetary');
 const { USDExchangeRate, otherExchangeRate } = require('../integrations/exchangeRates');
 const { GovRevenue } = require('../integrations/government');
-const { exportData } = require('../integrations/trade')
+const { exportData, importData } = require('../integrations/trade')
 
 const User = require('../models/user');
 
@@ -87,5 +87,6 @@ module.exports.tradeData = async(req, res)=>{
     const country = req.query.country || 'CAN';
 
     const exports = await exportData(country);
-    res.status(200).json({exportData : exports})
+    const imports = await importData(country)
+    res.status(200).json({exportData : exports, importData : imports})
 }
