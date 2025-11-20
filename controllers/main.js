@@ -5,6 +5,7 @@ const { getWorldBankDocs } = require('../integrations/worldBank');
 const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
 const { unemploymentRate, youthUnemploymentRate, employmentToPopulation } = require('../integrations/labourMarket');
 const { centralBankPolicyRate, lendInterestRate, depositInterestRate } = require('../integrations/monetary');
+const { USDExchangeRate } = require('../integrations/exchangeRates');
 
 const User = require('../models/user');
 
@@ -65,4 +66,10 @@ module.exports.monetary = async(req, res)=>{
     const depositInterestRateData = await depositInterestRate(country);
 
     res.status(200).json({centralBankPolicyData : centralBankPolicyRateData, lendInterestRate : lendInterestData, depositInterest : depositInterestRateData})
+};
+
+module.exports.exchangeRate = async(req, res)=>{
+    const USDExchangeData = await USDExchangeRate();
+
+    res.status(200).json({USDExchangeRate : USDExchangeData})
 }
