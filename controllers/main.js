@@ -4,7 +4,7 @@ const { getNewsData } = require('../integrations/news');
 const { getWorldBankDocs } = require('../integrations/worldBank');
 const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
 const { unemploymentRate, youthUnemploymentRate, employmentToPopulation } = require('../integrations/labourMarket');
-const { centralBankPolicyRate } = require('../integrations/monetary')
+const { centralBankPolicyRate } = require('../integrations/monetary');
 
 const User = require('../models/user');
 
@@ -59,4 +59,8 @@ module.exports.labourMarketData = async(req, res)=>{
 
 module.exports.monetary = async(req, res)=>{
     const {country = 'CAN'} = req.query;
+
+    const centralBankPolicyRateData = await centralBankPolicyRate(country);
+
+    res.status(200).json({centralBankPolicyData : centralBankPolicyRateData})
 }

@@ -15,6 +15,8 @@ router.get('/worldbank-docs', isLoggedIn, catchAsync(controller.getWorldBankDocs
 
 router.get('/gdp', isLoggedIn, catchAsync(controller.getGDP));
 
-router.get('/labour-market', isLoggedIn, catchAsync(controller.labourMarketData))
+router.get('/labour-market', isLoggedIn, catchAsync(controller.labourMarketData));
+
+router.get('/monetary', catchAsync(controller.monetary));
 
 module.exports = router;
