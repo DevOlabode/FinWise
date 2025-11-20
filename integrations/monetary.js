@@ -1,7 +1,8 @@
+const ExpressError = require('../utils/expressError')
 //Central Bank Policy Rate.
 
 const centralBankPolicyRate = async(country) =>{
-    const url = `https://www.imf.org/-/media/Files/Data/IMFAPI/IFS/${country}/FPOLRATE`;
+    const url = `https://www.imf.org/external/datamapper/api/v1/FPOLRATE/${country}`;
 
     try{
         const response = await fetch(url);
@@ -16,5 +17,6 @@ const centralBankPolicyRate = async(country) =>{
         console.error('Request Failed', error);
     }
 }
+
 
 module.exports = {centralBankPolicyRate}
