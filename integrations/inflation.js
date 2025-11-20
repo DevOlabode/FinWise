@@ -34,7 +34,7 @@ async function getInflationRate(country) {
     const response = await fetch(url);
     if (!response.ok) {
         console.error("Error response text:", await response.text());
-      throw new ExpressError(`Error: ${response.status} ${response.statusText}`);
+        throw new ExpressError(`Error: ${response.status} ${response.statusText}`, response.status);
     }
     const data = await response.json();
     return data;
