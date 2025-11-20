@@ -4,7 +4,7 @@ const { getNewsData } = require('../integrations/news');
 const { getWorldBankDocs } = require('../integrations/worldBank');
 const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
 const { unemploymentRate, youthUnemploymentRate, employmentToPopulation } = require('../integrations/labourMarket');
-const { centralBankPolicyRate, lendInterestRate } = require('../integrations/monetary');
+const { centralBankPolicyRate, lendInterestRate, depositInterestRate } = require('../integrations/monetary');
 
 const User = require('../models/user');
 
@@ -62,6 +62,7 @@ module.exports.monetary = async(req, res)=>{
 
     const centralBankPolicyRateData = await centralBankPolicyRate(country);
     const lendInterestData = await lendInterestRate(country);
+    const depositInterestRateData = await depositInterestRate(country);
 
-    res.status(200).json({centralBankPolicyData : null, lendInterestRate : lendInterestData})
+    res.status(200).json({centralBankPolicyData : centralBankPolicyRateData, lendInterestRate : lendInterestData, depositInterest : depositInterestRateData})
 }
