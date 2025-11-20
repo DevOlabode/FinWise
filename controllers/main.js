@@ -4,6 +4,7 @@ const { getNewsData } = require('../integrations/news');
 const { getWorldBankDocs } = require('../integrations/worldBank');
 const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
 const { unemploymentRate, youthUnemploymentRate, employmentToPopulation } = require('../integrations/labourMarket');
+const { centralBankPolicyRate } = require('../integrations/monetary')
 
 const User = require('../models/user');
 
@@ -53,5 +54,9 @@ module.exports.labourMarketData = async(req, res)=>{
     const getUnemploymentRate = await unemploymentRate(country);
     const youthUnemploymentRateData = await youthUnemploymentRate(country);
     const employmentToPopulationData = await employmentToPopulation(country)
-    res.status(200).json({unemploymentRate : null, youthUnemploymentRate : null, employmentToPopulationRatio : employmentToPopulationData})
+    res.status(200).json({unemploymentRate : getUnemploymentRate, youthUnemploymentRate : youthUnemploymentRateData, employmentToPopulationRatio : employmentToPopulationData})
 };
+
+module.exports.monetary = async(req, res)=>{
+    const {country = 'CAN'} = req.query;
+}
