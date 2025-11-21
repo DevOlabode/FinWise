@@ -16,4 +16,4 @@ const industrialProd = async(country) =>{
     }
 };
 
-module.exports = { industrialProd }
+module.exports = { industrialProd };
