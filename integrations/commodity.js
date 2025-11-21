@@ -31,6 +31,21 @@ const naturalGasPrice = async() =>{
     }catch (error) {
         console.error("Request failed:", error);
     }
+};
+
+const foodPrice = async() =>{
+    const url = `https://fenixservices.fao.org/faostat/api/v1/en/FP?area_code=1000&item_code=2511&year=2020`;
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new ExpressError(`Error: ${response.status} ${response.statusText}`, response.status);
+        }
+        const data = await response.json();
+        return data;
+    }catch (error) {
+        console.error("Request failed:", error);
+    }
 }
 
-module.exports = {oilPrice, naturalGasPrice}
+module.exports = {oilPrice, naturalGasPrice, foodPrice}
