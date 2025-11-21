@@ -96,8 +96,7 @@ module.exports.tradeData = async(req, res)=>{
 };
 
 module.exports.commodity = async(req, res)=>{
-    const {country} = req.query || 'CAN'
-    const oilPriceData = await oilPrice(country);
+    const oilPriceData = await oilPrice();
 
     res.status(200).json({oilPriceData : oilPriceData})
 };

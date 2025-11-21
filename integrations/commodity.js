@@ -1,9 +1,9 @@
 const ExpressError = require('../utils/expressError');
 
 // WIT/Brent
-const oilPrice = async (country)=>{
+const oilPrice = async ()=>{
     const apiKey = process.env.EIA_API_KEY;
-    const url = `https://api.eia.gov/v2/petroleum/pri/spt/data/?api_key=${apiKey}&frequency=daily&area=${country}`;
+    const url = `https://api.eia.gov/v2/petroleum/pri/spt/data/?api_key=${apiKey}&frequency=daily`;
 
     try {
         const response = await fetch(url);
