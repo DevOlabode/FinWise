@@ -6,7 +6,7 @@ const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
 const { unemploymentRate, youthUnemploymentRate, employmentToPopulation } = require('../integrations/labourMarket');
 const { centralBankPolicyRate, lendInterestRate, depositInterestRate } = require('../integrations/monetary');
 const { USDExchangeRate, otherExchangeRate } = require('../integrations/exchangeRates');
-const { GovRevenue, GovSpending } = require('../integrations/government');
+const { GovRevenue, publicDebt } = require('../integrations/government');
 const { exportData, importData, exportGrowth, importGrowth } = require('../integrations/trade');
 const { oilPrice, naturalGasPrice } = require('../integrations/commodity');
 const { industrialProd } = require('../integrations/manufacturing')
@@ -82,8 +82,8 @@ module.exports.exchangeRate = async(req, res)=>{
 module.exports.government = async(req, res)=>{
     const country = req.query.country || 'CAN';
     const govRevenueData = await GovRevenue(country);
-    const GovSpendingData = await GovSpending(country);
-    res.status(200).json({governmentalRevenue : null, governmentSpending : GovSpendingData})
+    const publicDebtData = await publicDebt(country);
+    res.status(200).json({governmentalRevenue : null, governmentSpending : null, Publicdebt : publicDebtData})
 };
 
 module.exports.tradeData = async(req, res)=>{
