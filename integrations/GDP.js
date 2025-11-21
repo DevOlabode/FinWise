@@ -12,7 +12,7 @@ async function getGDP(country){
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new ExpressError(`Error: ${response.status} ${response.statusText}`, 404);
+            throw new ExpressError(`Error: ${response.status} ${response.statusText}`, response.status);
         }
         const data = await response.json();
         return data;

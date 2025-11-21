@@ -7,7 +7,8 @@ const { unemploymentRate, youthUnemploymentRate, employmentToPopulation } = requ
 const { centralBankPolicyRate, lendInterestRate, depositInterestRate } = require('../integrations/monetary');
 const { USDExchangeRate, otherExchangeRate } = require('../integrations/exchangeRates');
 const { GovRevenue } = require('../integrations/government');
-const { exportData, importData, exportGrowth, importGrowth } = require('../integrations/trade')
+const { exportData, importData, exportGrowth, importGrowth } = require('../integrations/trade');
+const { oilPrice } = require('../integrations/commodity')
 
 const User = require('../models/user');
 
@@ -91,5 +92,12 @@ module.exports.tradeData = async(req, res)=>{
     const importGrowthData = await importGrowth(country);
     const exportGrowthData = await exportGrowth(country);
 
-    res.status(200).json({exportData : null, importData : null, importGrowthData : importGrowthData, exportGrowthData : exportGrowthData})
-}
+    res.status(200).json({exportData : exports, importData : imports, importGrowthData : importGrowthData, exportGrowthData : exportGrowthData})
+};
+
+module.exports.commodity = async(req, res)=>{
+    const {country} = req.query || 'CAN'
+    const oilPriceData = await oilPrice(country);
+
+    res.status(200).json({oilPriceData : oilPriceData})
+};
