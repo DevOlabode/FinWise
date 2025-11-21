@@ -83,7 +83,7 @@ module.exports.government = async(req, res)=>{
     const country = req.query.country || 'CAN';
     const govRevenueData = await GovRevenue(country);
     const publicDebtData = await publicDebt(country);
-    res.status(200).json({governmentalRevenue : null, governmentSpending : null, Publicdebt : publicDebtData})
+    res.status(200).json({governmentalRevenue : govRevenueData, Publicdebt : publicDebtData})
 };
 
 module.exports.tradeData = async(req, res)=>{
