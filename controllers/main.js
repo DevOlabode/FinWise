@@ -8,7 +8,7 @@ const { centralBankPolicyRate, lendInterestRate, depositInterestRate } = require
 const { USDExchangeRate, otherExchangeRate } = require('../integrations/exchangeRates');
 const { GovRevenue } = require('../integrations/government');
 const { exportData, importData, exportGrowth, importGrowth } = require('../integrations/trade');
-const { oilPrice } = require('../integrations/commodity')
+const { oilPrice, naturalGasPrice } = require('../integrations/commodity')
 
 const User = require('../models/user');
 
@@ -97,6 +97,6 @@ module.exports.tradeData = async(req, res)=>{
 
 module.exports.commodity = async(req, res)=>{
     const oilPriceData = await oilPrice();
-
-    res.status(200).json({oilPriceData : oilPriceData})
+    const naturalGasPriceData  = await naturalGasPrice()
+    res.status(200).json({oilPriceData : oilPriceData, naturalGasPrice : naturalGasPriceData})
 };
