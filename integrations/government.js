@@ -50,9 +50,3 @@ const publicDebt = async(country) =>{
 }
 
 module.exports = {GovRevenue, GovSpending, publicDebt};
-
-// budget : surplus/deficit
-// api url : https://api.worldbank.org/v2/country/CAN/indicator/GC.BAL.CASH.GD.ZS?format=json
-
-//Public Debt
-//api url : https://api.worldbank.org/v2/country/CAN/indicator/GC.DOD.TOTL.GD.ZS?format=json
