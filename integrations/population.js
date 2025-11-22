@@ -45,6 +45,6 @@ const lifeExpantancy = async(country='CA')=> {
     console.error("Request failed:", error);
   }
 
-}
+};
 
 module.exports = {population, populationGrowth, lifeExpantancy};
