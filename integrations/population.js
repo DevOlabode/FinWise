@@ -1,4 +1,4 @@
-const population = async(country) => {
+const population = async(country='CA') => {
     const url = `https://api.worldbank.org/v2/country/${country}/indicator/SP.POP.TOTL?format=json`;
     
   try {

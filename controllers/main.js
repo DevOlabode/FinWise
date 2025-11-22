@@ -112,7 +112,7 @@ module.exports.manufacturing = async(req, res)=>{
 };
 
 module.exports.population = async(req, res)=>{
-    const {country} = req.query || 'CAN';
+    const {country} = req.query;
     const populationData = await population(country);
 
     res.status(200).json({populationData : populationData})
