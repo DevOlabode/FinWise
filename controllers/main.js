@@ -9,7 +9,8 @@ const { USDExchangeRate, otherExchangeRate } = require('../integrations/exchange
 const { GovRevenue, publicDebt } = require('../integrations/government');
 const { exportData, importData, exportGrowth, importGrowth } = require('../integrations/trade');
 const { oilPrice, naturalGasPrice } = require('../integrations/commodity');
-const { industrialProd } = require('../integrations/manufacturing')
+const { industrialProd } = require('../integrations/manufacturing');
+const { population } = require('../integrations/population');
 
 const User = require('../models/user');
 
@@ -108,4 +109,11 @@ module.exports.manufacturing = async(req, res)=>{
     const industrialProdData = await industrialProd(country);
 
     res.status(200).json({industrialProdData : industrialProdData})
-}
+};
+
+module.exports.population = async(req, res)=>{
+    const {country} = req.query || 'CAN';
+    const populationData = await population(country);
+
+    res.status(200).json({populationData : populationData})
+};

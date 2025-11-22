@@ -27,6 +27,8 @@ router.get('/trade', catchAsync(controller.tradeData));
 
 router.get('/commodity', catchAsync(controller.commodity));
 
-router.get('/manufacturing', catchAsync(controller.manufacturing))
+router.get('/manufacturing', catchAsync(controller.manufacturing));
+
+router.get('/population', catchAsync(controller.population));
 
 module.exports = router;
