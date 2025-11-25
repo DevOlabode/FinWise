@@ -1,4 +1,3 @@
-// industrial Production Index
 const ExpressError = require('../utils/expressError');
 
 const industrialProd = async(country) =>{

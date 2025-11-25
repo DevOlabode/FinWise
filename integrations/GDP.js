@@ -1,7 +1,4 @@
 const  ExpressError = require('../utils/expressError');
-// GDP (current USD)
-// GDP per capita
-// GDP growth (%)
 
 // Source: World Bank API
 
