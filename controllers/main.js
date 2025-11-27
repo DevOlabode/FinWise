@@ -1,5 +1,5 @@
 const { getInflation,getInflationRate, fredInflationData } = require('../integrations/inflation');
-const { getStockData } = require('../integrations/stock');
+const { getStockData, getStockDataWithSymbol } = require('../integrations/stock');
 const { getNewsData } = require('../integrations/news');
 const { getWorldBankDocs } = require('../integrations/worldBank');
 const { getGDP, GDPperCapital, GDPGrowth } = require('../integrations/GDP');
@@ -29,7 +29,8 @@ module.exports.getStockData = async(req, res)=>{
     const stockTicker = req.query.ticker || 'AAPL';
 
     const stockData = await getStockData(stockTicker);
-    res.status(200).json({ stockData: stockData });
+    const stockDataWithSymbol = await getStockDataWithSymbol();
+    res.status(200).json({ stockData: stockData, stockDataWithSymbol : stockDataWithSymbol });
 };
 
 module.exports.getNewsArticles = async (req, res) =>{
