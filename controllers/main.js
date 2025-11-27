@@ -9,7 +9,6 @@ const { USDExchangeRate, otherExchangeRate } = require('../integrations/exchange
 const { GovRevenue, publicDebt } = require('../integrations/government');
 const { exportData, importData, exportGrowth, importGrowth } = require('../integrations/trade');
 const { oilPrice, naturalGasPrice } = require('../integrations/commodity');
-const { industrialProd } = require('../integrations/manufacturing');
 const { population, populationGrowth, lifeExpantancy } = require('../integrations/population');
 
 const User = require('../models/user');
@@ -105,18 +104,11 @@ module.exports.commodity = async(req, res)=>{
     res.status(200).json({oilPriceData : oilPriceData, naturalGasPrice : naturalGasPriceData})
 };
 
-module.exports.manufacturing = async(req, res)=>{
-    const {country} = req.query || 'CAN'
-    const industrialProdData = await industrialProd(country);
-
-    res.status(200).json({industrialProdData : industrialProdData})
-};
-
 module.exports.population = async(req, res)=>{
     const {country} = req.query;
 
     const populationData = await population(country);
     const populationGrowthData = await populationGrowth(country);
     const lifeExpantancyData = await lifeExpantancy(country)
-    res.status(200).json({populationData : null, populationGrowthData : null, lifeExpantancyData : lifeExpantancyData});
+    res.status(200).json({populationData : populationData, populationGrowthData : populationGrowthData, lifeExpantancyData : lifeExpantancyData});
 };
