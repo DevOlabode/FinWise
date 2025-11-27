@@ -15,8 +15,8 @@ const { population, populationGrowth, lifeExpantancy } = require('../integration
 const User = require('../models/user');
 
 module.exports.getInflationData = async (req, res, next) => {
-    const country = req.user.region || 'Canada';
-    const seriesId = req.user.fredSeriesId || 'CPIAUCSL';
+    const country = req.query.region || 'Canada';
+    const seriesId = req.query.fredSeriesId || 'CPIAUCSL';
     
     const data = await getInflation(country);
     const rateData = await getInflationRate(country);
@@ -26,7 +26,7 @@ module.exports.getInflationData = async (req, res, next) => {
 }; 
 
 module.exports.getStockData = async(req, res)=>{
-    const stockTicker = req.user.ticker || 'AAPL';
+    const stockTicker = req.query.ticker || 'AAPL';
 
     const stockData = await getStockData(stockTicker);
     res.status(200).json({ stockData: stockData });

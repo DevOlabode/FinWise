@@ -7,7 +7,7 @@ const catchAsync = require('../utils/catchAsync')
 
 router.get('/inflation', isLoggedIn,  catchAsync(controller.getInflationData));
 
-router.get('/stock',isLoggedIn, catchAsync(controller.getStockData));
+router.get('/stock', catchAsync(controller.getStockData));
 
 router.get('/news', isLoggedIn, catchAsync(controller.getNewsArticles));
 
